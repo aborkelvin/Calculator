@@ -39,6 +39,8 @@ const plus = document.querySelector('.plus');
 const minus = document.querySelector('.minus');
 const over = document.querySelector('.over');
 const times = document.querySelector('.times');
+const but = document.querySelectorAll('.but');
+const sickle = document.querySelector('input');
 
 function funy(){
     let val = document.querySelector('input').value;
@@ -46,7 +48,27 @@ function funy(){
     console.log(first);
 }
 
-plus.addEventListener("click",funy);
+function input(a){
+    sickle.value = sickle.value + a;
+    //alert('sku');
+}
+
+plus.addEventListener("click",function(){
+    funy();
+    input('+');
+});
 minus.addEventListener("click",funy);
 times.addEventListener("click",funy);
 over.addEventListener("click",funy);
+but[0].addEventListener('click',function (){input('0');})
+but[1].addEventListener('click',function (){input('1');})
+but[2].addEventListener('click',function (){input('2');})
+but[3].addEventListener('click',function (){input('3');})
+but[4].addEventListener('click',function (){input('4');})
+but[5].addEventListener('click',function (){input('5');})
+but[6].addEventListener('click',function (){input('6');})
+but[7].addEventListener('click',function (){input('7');})
+but[8].addEventListener('click',function (){input('8');})
+but[9].addEventListener('click',function (){input('9');})
+//console.log(Array.from(but));
+//console.log(but[1]);
