@@ -1,4 +1,5 @@
 let sickle = document.querySelector('input');
+console.log(sickle);
 const equals = document.querySelector('.equals');
 const plus = document.querySelector('.plus');
 const minus = document.querySelector('.minus');
@@ -7,6 +8,13 @@ const times = document.querySelector('.times');
 const numbtn = document.querySelectorAll('.but');
 const clearbtn = document.querySelector('.clear');
 const delbtn = document.querySelector('.delbtn');
+let sine = document.querySelector('.sine')
+let cos = document.querySelector('.cos')
+let tan = document.querySelector('.tan')
+let power = document.querySelector('.power')
+let openp = document.querySelector('.openp')
+let closep = document.querySelector('.closep')
+
 
 function add(a,b){
     let sum = a + b;
@@ -57,9 +65,36 @@ function input(a){
     let store = sickle.value;
 }
 
-/* Onclick of the sign(+-/*) buttons, call function checkprevious,which gets the value of the previous values 
+//This adds the numbers into the input box using the input function above
+numbtn[0].addEventListener('click',function (){input('0');})
+numbtn[1].addEventListener('click',function (){input('1');})
+numbtn[2].addEventListener('click',function (){input('2');})
+numbtn[3].addEventListener('click',function (){input('3');})
+numbtn[4].addEventListener('click',function (){input('4');})
+numbtn[5].addEventListener('click',function (){input('5');})
+numbtn[6].addEventListener('click',function (){input('6');})
+numbtn[7].addEventListener('click',function (){input('7');})
+numbtn[8].addEventListener('click',function (){input('8');})
+numbtn[9].addEventListener('click',function (){input('9');})
+numbtn[10].addEventListener('click',function (){input('.');})
+
+
+/*for(var i = 0; i<10;i++){ this didn't work though,should have done the above list of codes.
+    numbtn[i].addEventListener('click',function (){input(i.toString);})
+}
+
+numbtn.forEach(function(item){ This too
+    let itsarray = Array.from(numbtn);
+    let ind = itsarray.indexOf(item);
+    item.addEventListener('click',function (){input(ind.toString());})
+})
+*/ 
+
+
+
+/* Onclick of the sign(+-/*) buttons, call checkprevious function which gets the value of the previous values 
 in the input displays, runs an array method(filter), to check for previous operator signs,
-on seeing one, it runs the solve function on the previous values, then includes the + sign
+on seeing one, it runs the solve function on the previous values, then includes the new (+-/ or *)sign
 with the result using the input function */
 function checkprevious(){
     let hold = sickle.value;
@@ -89,30 +124,15 @@ over.addEventListener("click",function(){
     checkprevious();
     input('/');});
 
-numbtn[0].addEventListener('click',function (){input('0');})
-numbtn[1].addEventListener('click',function (){input('1');})
-numbtn[2].addEventListener('click',function (){input('2');})
-numbtn[3].addEventListener('click',function (){input('3');})
-numbtn[4].addEventListener('click',function (){input('4');})
-numbtn[5].addEventListener('click',function (){input('5');})
-numbtn[6].addEventListener('click',function (){input('6');})
-numbtn[7].addEventListener('click',function (){input('7');})
-numbtn[8].addEventListener('click',function (){input('8');})
-numbtn[9].addEventListener('click',function (){input('9');})
-numbtn[10].addEventListener('click',function (){input('.');})
-
-
-
-/*for(var i = 0; i<10;i++){ this didn't work though,should have done the above list of codes.
-    numbtn[i].addEventListener('click',function (){input(i.toString);})
-}
-
-numbtn.forEach(function(item){ This too
-    let itsarray = Array.from(numbtn);
-    let ind = itsarray.indexOf(item);
-    item.addEventListener('click',function (){input(ind.toString());})
+sine.addEventListener("click",function(){
+    input('sin(')
 })
-*/ 
+power.addEventListener
+
+
+/*This solves by getting inputbox value,converting to array, searches for an operator sign, splits the original
+    inputbox value into an array with the operator,then calls the operate function with the two members of the 
+    array and the particular operator*/
 function solve(){
     let hold = sickle.value;
     let fas = hold.split('');
@@ -138,10 +158,7 @@ function solve(){
             let sec = Number(book[1]);
             operate(first,'/',sec);
         }
-
-    }
-    
-    
+    }        
 }
 
 equals.addEventListener('click',solve);
@@ -175,7 +192,14 @@ document.addEventListener('keydown',function(event){
             input(ops[i]);
         }
     }
-    if (event.key == '=') {
+    if(event.key == 'Backspace'){
+        let hold = sickle.value;
+        let fas = hold.split('');
+        fas.pop();
+        fas = fas.join('');
+        sickle.value = fas;
+    }
+    if (event.key == '=' || event.key == 'Enter') {
         solve();
     }
 
